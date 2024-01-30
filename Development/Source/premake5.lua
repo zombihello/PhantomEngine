@@ -9,13 +9,19 @@ binariesDir				    = "%{wks.location}/../../../Binaries/"
 -- Output directory name
 outputDir			        = "%{cfg.platform}/"
 
--- Output sufix target name
-sufixOutputName             = "-%{cfg.platform}-%{cfg.buildcfg}"
+-- Path to external directory
+externalDir			        = "%{wks.location}/../../External/";
+
+-- Path to externals
+extSDL2			            = externalDir .. "SDL2"
+
+-- Include modules of external libs
+include( extSDL2 )
 
 workspace "PhantomEngine"
     location( "../Intermediate/" .. _ACTION .. "/" )
     configurations 	    { "Debug", "DebugWithEditor", "Release", "ReleaseWithEditor", "Shipping" }
-    platforms 		    { "Win64" }
+    platforms 		    { "Win64"}
     defaultplatform	    "Win64"
 
     ---------------- GLOBAL SETTINGS ---------------
@@ -38,7 +44,7 @@ workspace "PhantomEngine"
         staticruntime 	"Off"
         debugdir( binariesDir .. outputDir )
 
-        defines 		{ "_WIN64" }
+        defines 		{ "_WIN64", "PLATFORM_64BIT=1" }
 	filter {}
 
     --------------- CONFIGURATION SETTINGS --------------
@@ -108,6 +114,10 @@ workspace "PhantomEngine"
         -- Platform specific settings
         filter "platforms:Win64"
         filter {}
+
+        --------- LINK EXTERNAL LIBS -------
+
+        LinkSDL2()
 
         ------ EDITOR SETTINGS -----
 
