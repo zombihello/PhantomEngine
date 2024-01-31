@@ -14,7 +14,7 @@ int WINAPI WinMain( HINSTANCE hInst, HINSTANCE hPreInst, LPSTR lpCmdLine, int nC
 	CWindowsWindow		window;
 	window.Create( "ExampleGame", 1280, 720 );
 
-	// Out main Loop
+	// Our main loop
 	while ( !bExit )
 	{
 		// Handle window events

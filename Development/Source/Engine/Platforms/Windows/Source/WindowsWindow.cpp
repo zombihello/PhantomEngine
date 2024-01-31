@@ -91,7 +91,7 @@ bool CWindowsWindow::Create( const achar* InTitle, uint32 InWidth, uint32 InHeig
 	SDL_GetWindowWMInfo( sdlWindow, sdlWindowInfo );
 	handle = sdlWindowInfo->info.win.window;
 
-	return false;
+	return true;
 }
 
 /*
